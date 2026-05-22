@@ -1,0 +1,1246 @@
+/* ==========================================================================
+   SMART PDF SPLITTER - CSS DESIGN SYSTEM & UI STYLE
+   Aesthetics: Pastel Blue, Glassmorphism, Premium Micro-interactions
+   ========================================================================== */
+
+:root {
+    /* Color Palette - Forest Green & Pastel Mint (MilkT Theme) */
+    --bg-gradient: linear-gradient(135deg, #d2ebd9 0%, #a4dbb8 100%); /* 더 깊이감 있고 선명해진 그린 그라디언트 배경 */
+    --primary: #0c9470;          /* 한층 더 진하고 또렷한 에메랄드 그린 */
+    --primary-light: #dcf5ee;    /* 또렷해진 연두빛 틴트 배경 */
+    --primary-dark: #075f46;     /* 묵직하고 가독성 높은 다크 포레스트 그린 */
+    --secondary: #12b886;        /* 청량감을 유지하는 민트 그린 */
+    --accent: #e67e22;           /* 시선을 끄는 대비 높은 골드/오렌지 */
+    --success: #20bf6b;
+    --success-dark: #0fa151;
+    --error: #eb3b5a;
+    
+    /* Document Theme Colors */
+    --color-hwp: #075f46;        /* 한글 변환용 딥 그린 */
+    --color-docx: #0f52ba;
+    --color-txt: #4b5563;
+    --color-image: #eb3b5a;
+
+    /* Text Colors (High Contrast - Extremely Legible) */
+    --text-primary: #0e161a;     /* 극단적으로 선명하고 진한 먹색 본문 */
+    --text-secondary: #1d2d35;   /* 또렷한 명도를 부여한 깊은 서브 텍스트 */
+    --text-light: #3a4f59;       /* 가독성 한계를 극대화한 보조 텍스트 */
+    
+    /* Layout Tokens */
+    --glass-bg: rgba(255, 255, 255, 0.94); /* 불투명도를 높여 카드가 배경에 묻히지 않게 선명화 */
+    --glass-border: rgba(7, 95, 70, 0.45); /* 다크 그린 톤의 명확한 경계 테두리 */
+    --card-shadow: 0 12px 35px -8px rgba(7, 95, 70, 0.28); /* 더욱 또렷하고 풍부해진 입체적 음영 */
+    --inner-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.06);
+    --radius-lg: 20px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+/* Scrollbar Style - Custom Green */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(12, 148, 112, 0.35);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(12, 148, 112, 0.6);
+}
+
+/* 카페 아이콘 애니메이션 및 비주얼 프리셋 */
+.character-holder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+}
+
+.cafe-holder {
+    animation: floatCafe 4.2s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes floatCafe {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(1deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+.cafe-icon {
+    filter: drop-shadow(0 6px 12px rgba(7, 95, 70, 0.18));
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s;
+}
+
+.cafe-icon:hover {
+    transform: scale(1.1) translateY(-2px);
+    filter: drop-shadow(0 10px 22px rgba(7, 95, 70, 0.28));
+}
+
+/* Main Container */
+.app-container {
+    width: 100%;
+    max-width: 1300px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(44, 62, 80, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: appFadeIn 0.8s ease-out;
+}
+
+@keyframes appFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* App Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    background: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.logo-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+.brand-text h1 {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--primary-dark);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.brand-text p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* API & Model Settings Panel */
+.api-settings {
+    display: flex;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-group label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.input-group label i {
+    color: var(--primary);
+}
+
+.input-group input {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(74, 144, 226, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--text-primary);
+    transition: var(--transition);
+    outline: none;
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    font-weight: 500;
+    width: 250px;
+    box-shadow: var(--inner-shadow);
+}
+
+#model-select {
+    width: 140px;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.btn-icon {
+    position: absolute;
+    right: 10px;
+    top: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    font-size: 14px;
+    padding: 5px;
+    transition: var(--transition);
+}
+
+.btn-icon:hover {
+    color: var(--primary);
+}
+
+/* App Main Body */
+.app-content {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    background: rgba(240, 246, 251, 0.4);
+    flex: 1;
+}
+
+/* General Cards styling */
+.card {
+    background: white;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: var(--card-shadow);
+    padding: 24px;
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 15px 35px -10px rgba(74, 144, 226, 0.22);
+}
+
+/* 1. Upload Section */
+.upload-section {
+    padding: 8px;
+}
+
+.dropzone {
+    border: 2px dashed rgba(74, 144, 226, 0.35);
+    border-radius: var(--radius-md);
+    padding: 40px 20px;
+    text-align: center;
+    background: rgba(245, 249, 253, 0.6);
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.dropzone:hover, .dropzone.dragover {
+    background: rgba(74, 144, 226, 0.05);
+    border-color: var(--primary);
+}
+
+.upload-icon {
+    width: 68px;
+    height: 68px;
+    background: var(--primary-light);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 16px;
+    color: var(--primary);
+    font-size: 30px;
+    transition: var(--transition);
+}
+
+.dropzone:hover .upload-icon {
+    transform: scale(1.1);
+    background: var(--primary);
+    color: white;
+}
+
+.dropzone h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.dropzone p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.file-types {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+/* 2. Control Panel & Multiple Conversion Toolbar */
+.control-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.file-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.file-meta h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.file-meta p {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(74, 144, 226, 0.2);
+    margin: 0 20px;
+}
+
+.conversion-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-grow: 1;
+}
+
+.toolbar-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.toolbar-title i {
+    color: var(--primary);
+}
+
+.btn-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Button Styling System */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    outline: none;
+    font-family: inherit;
+}
+
+.btn-pastel {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(74, 144, 226, 0.25);
+    box-shadow: 0 4px 6px rgba(74, 144, 226, 0.05);
+}
+
+.btn-pastel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(74, 144, 226, 0.1);
+}
+
+.btn-hwp {
+    color: var(--color-hwp);
+}
+.btn-hwp:hover {
+    background: var(--color-hwp);
+    color: white;
+    border-color: var(--color-hwp);
+}
+
+.btn-docx {
+    color: var(--color-docx);
+}
+.btn-docx:hover {
+    background: var(--color-docx);
+    color: white;
+    border-color: var(--color-docx);
+}
+
+.btn-txt {
+    color: var(--color-txt);
+}
+.btn-txt:hover {
+    background: var(--color-txt);
+    color: white;
+    border-color: var(--color-txt);
+}
+
+.btn-image {
+    color: var(--color-image);
+}
+.btn-image:hover {
+    background: var(--color-image);
+    color: white;
+    border-color: var(--color-image);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+    opacity: 0.95;
+}
+
+.btn-secondary-outline {
+    background: transparent;
+    border: 1px dashed var(--primary);
+    color: var(--primary);
+}
+
+.btn-secondary-outline:hover {
+    background: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--success) 0%, var(--success-dark) 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(92, 219, 149, 0.35);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(92, 219, 149, 0.45);
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: var(--radius-sm);
+}
+
+.btn-large {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+    font-size: 15px;
+    border-radius: var(--radius-md);
+}
+
+/* 3. Main Workspace Grid - Single Column Premium Optimization */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: start;
+    animation: fadeIn 0.5s ease-out;
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(74, 144, 226, 0.15);
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.panel-header h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.panel-header h2 i {
+    color: var(--primary);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Segment Control (대단원 / 중단원) */
+.segment-control {
+    display: inline-flex;
+    background: rgba(74, 144, 226, 0.08);
+    padding: 4px;
+    border-radius: 30px;
+    border: 1px solid rgba(74, 144, 226, 0.15);
+}
+
+.segment-control input[type="radio"] {
+    display: none;
+}
+
+.segment-control label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+}
+
+.segment-control input[type="radio"]:checked + label {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.25);
+}
+
+.segment-control label:hover {
+    color: var(--primary-dark);
+}
+
+.segment-control input[type="radio"]:checked + label:hover {
+    color: white;
+}
+
+.badge {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* Left Panel: Preview Panels */
+.preview-panel {
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-container {
+    overflow-y: auto;
+    max-height: 700px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 16px;
+    padding: 4px;
+}
+
+.page-thumbnail-card {
+    background: #f7fafc;
+    border: 1px solid rgba(74, 144, 226, 0.15);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.page-thumbnail-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.1);
+    transform: translateY(-2px);
+}
+
+.canvas-wrapper {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+    position: relative;
+    aspect-ratio: 1 / 1.414; /* Standard A4 ratio */
+}
+
+.canvas-wrapper canvas {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.virtual-text-preview {
+    font-size: 9px;
+    color: var(--text-secondary);
+    text-align: left;
+    height: 130px;
+    overflow: hidden;
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.05);
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.thumbnail-number {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+/* Right Panel: AI & Chapters */
+.analysis-panel {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.analysis-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Empty State / Guidelines */
+.instructions-card {
+    background: rgba(227, 238, 253, 0.5);
+    border: 1px solid rgba(74, 144, 226, 0.15);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    color: var(--text-secondary);
+}
+
+.instructions-card h4 {
+    color: var(--primary-dark);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.instructions-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.instructions-card li {
+    font-size: 13px;
+    position: relative;
+    padding-left: 18px;
+}
+
+.instructions-card li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    position: absolute;
+    left: 4px;
+    top: 0;
+}
+
+/* AI Loader */
+.ai-loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    gap: 16px;
+    background: rgba(74, 144, 226, 0.03);
+    border-radius: var(--radius-md);
+    border: 1px dashed rgba(74, 144, 226, 0.2);
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--primary-light);
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ai-loader p {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+
+.ai-loader .subtext {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* Chapter Config Cards (AI Split Outputs) */
+.chapters-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-right: 4px;
+}
+
+.chapter-card {
+    background: #fcfdfe;
+    border: 1px solid rgba(74, 144, 226, 0.18);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    transition: var(--transition);
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+.chapter-card:hover {
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.08);
+    transform: scale(1.005);
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chapter-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chapter-title-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.chapter-index-badge {
+    background: var(--primary);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.chapter-name-input {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-primary);
+    border: 1px solid transparent;
+    background: transparent;
+    padding: 4px 8px;
+    border-radius: 4px;
+    flex-grow: 1;
+    outline: none;
+    transition: var(--transition);
+}
+
+.chapter-name-input:focus {
+    border-color: var(--primary);
+    background: white;
+}
+
+.chapter-range-selector {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.chapter-range-selector input {
+    width: 50px;
+    padding: 4px 6px;
+    border: 1px solid rgba(74, 144, 226, 0.25);
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 700;
+    outline: none;
+    color: var(--text-primary);
+}
+
+.chapter-range-selector input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.chapter-summary {
+    font-family: 'Nanum Myeongjo', 'Noto Serif KR', 'Georgia', serif;
+    font-size: 15px; /* 13.5px에서 15px로 확대 */
+    color: #1d2d35;
+    background: #f3faf7;
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(7, 95, 70, 0.15);
+    border-left: 5px solid var(--primary); /* 보더 라인 강화 */
+    line-height: 1.9; /* 가독성 확대를 위한 행간 확장 */
+    letter-spacing: -0.2px;
+}
+
+.chapter-summary strong.summary-card-title {
+    color: var(--primary-dark);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px; /* 11px에서 13px로 확대 */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 요약 텍스트 내부의 strong/b 핵심 키워드 강조 (형광펜 스타일 부각) */
+.chapter-summary-text strong,
+.chapter-summary-text b {
+    color: var(--primary-dark);
+    font-weight: 800;
+    background: linear-gradient(to top, rgba(12, 148, 112, 0.18) 45%, transparent 45%);
+    padding: 0 4px;
+    border-radius: 2px;
+}
+
+.chapter-actions {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    display: flex;
+    gap: 4px;
+}
+
+.btn-card-action {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-light);
+    padding: 4px;
+    transition: var(--transition);
+}
+
+.btn-card-action:hover {
+    color: var(--error);
+}
+
+/* Export Panel Area */
+.export-actions {
+    padding-top: 16px;
+    border-top: 1px solid rgba(74, 144, 226, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.actions-header span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--success-dark);
+}
+
+/* Toast System Style */
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.toast {
+    background: white;
+    border-radius: var(--radius-sm);
+    padding: 14px 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 280px;
+    max-width: 400px;
+    animation: toastSlideIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 4px solid var(--primary);
+}
+
+@keyframes toastSlideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.toast.success { border-left-color: var(--success); }
+.toast.error { border-left-color: var(--error); }
+.toast.info { border-left-color: var(--primary); }
+
+.toast i {
+    font-size: 18px;
+}
+.toast.success i { color: var(--success); }
+.toast.error i { color: var(--error); }
+.toast.info i { color: var(--primary); }
+
+.toast-message {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   [신설] 한눈에 보는 요약 대시보드 그리드 & 파스텔 카드 스타일
+   ========================================================================== */
+/* [제거됨] 요약 대시보드 스타일이 사용자 요청에 의해 안전하게 제거되었습니다. */
+
+/* App Footer */
+.app-footer {
+    padding: 20px 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.app-footer p {
+    font-size: 12px;
+    color: var(--text-light);
+}
+
+/* Helper Utilities */
+.hidden {
+    display: none !important;
+}
+
+/* Pulse animation for key button */
+.btn-pulse-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-pulse-effect::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-pulse-effect:hover::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Responsive Adaptation */
+@media (max-width: 1024px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+    .app-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    .api-settings {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .input-group input, #model-select {
+        width: 100%;
+    }
+    .app-content {
+        padding: 20px;
+    }
+    .control-section {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+    }
+    .divider {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   [신설] 개별 단원 변환 툴바 & 미니 버튼 시스템 스타일
+   ========================================================================== */
+.chapter-convert-toolbar, .summary-card-footer {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(7, 95, 70, 0.2);
+}
+
+.chapter-convert-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.toolbar-label {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mini-btn-group {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.summary-card-footer .mini-btn-group {
+    justify-content: space-between;
+    width: 100%;
+}
+
+.btn-mini {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 9px;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid rgba(7, 95, 70, 0.25);
+    background: white;
+    transition: var(--transition);
+    outline: none;
+    font-family: inherit;
+}
+
+.btn-mini:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(7, 95, 70, 0.15);
+}
+
+.btn-mini-hwp {
+    color: var(--color-hwp);
+}
+.btn-mini-hwp:hover {
+    background: var(--color-hwp);
+    color: white;
+    border-color: var(--color-hwp);
+}
+
+.btn-mini-docx {
+    color: var(--color-docx);
+}
+.btn-mini-docx:hover {
+    background: var(--color-docx);
+    color: white;
+    border-color: var(--color-docx);
+}
+
+.btn-mini-txt {
+    color: var(--color-txt);
+}
+.btn-mini-txt:hover {
+    background: var(--color-txt);
+    color: white;
+    border-color: var(--color-txt);
+}
+
+.btn-mini-img {
+    color: var(--color-image);
+}
+.btn-mini-img:hover {
+    background: var(--color-image);
+    color: white;
+    border-color: var(--color-image);
+}
+
+/* AI 단원 키워드 뱃지 프리미엄 스타일 */
+.chapter-keywords-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed rgba(12, 148, 112, 0.15);
+}
+
+.chapter-keyword-badge {
+    background: #e2f7f1; /* 화사하고 투명한 민트 틴트 */
+    color: var(--primary-dark);
+    font-size: 12px; /* 11px -> 12px 확대 */
+    font-weight: 800; /* 굵기 대폭 강조 */
+    padding: 4px 10px;
+    border-radius: 6px;
+    letter-spacing: -0.2px;
+    font-family: 'Outfit', 'Noto Sans KR', sans-serif;
+    border: 1.5px solid var(--primary); /* 테두리 강조선 */
+    transition: var(--transition);
+    box-shadow: 0 2px 5px rgba(12, 148, 112, 0.08);
+}
+
+.chapter-keyword-badge:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(12, 148, 112, 0.2);
+}
